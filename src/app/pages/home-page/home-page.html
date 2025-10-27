@@ -1,29 +1,33 @@
-<main class="h-screen bg-gray-200 flex items-center justify-center">
-  <div class="h-[338px] w-[830px] bg-[#fafafb] opacity-80 px-[55px] py-[26px] drop-shadow-md">
+<main class="bg-gray-300 dark:bg-gray-900 h-screen flex flex-col items-center justify-center">
+  <div
+    class="h-[338px] w-[830px] bg-[#fafafb] dark:bg-gray-950 opacity-80 px-[55px] py-[26px] drop-shadow-md"
+  >
     <form [formGroup]="chequeForm" (ngSubmit)="onSubmit()">
       <div class="flex items-start justify-between">
-        <span class="text-3xl font-bold text-black">CHECKIFY</span>
-        <app-account-number-txtbox-component />
+        <span (click)="toggleDarkMode()" class="text-3xl font-bold">CHECKIFY</span>
+        <p-datepicker formControlName="date" />
       </div>
       <input
         type="text"
-        class="border-b w-full mt-1.5 outline-none placeholder:text-sm focus:border-indigo-500"
+        class="border-b w-full mt-1.5 outline-none font-semibold placeholder:text-sm placeholder:font-normal uppercase focus:border-indigo-500"
         placeholder="PAY"
-        disabled
       />
 
       <div class="mt-2 flex flex-row items-end h-[71px] justify-between">
         <div class="w-[70%]">
           <input
+            #amountInWordsPrimary
             type="text"
-            class="border-b w-full mt-1 outline-none placeholder:text-sm focus:border-indigo-500"
+            class="border-b w-full mt-1 outline-none text-sm placeholder:text-sm focus:border-indigo-500"
             placeholder="SUM OF"
-            disabled
+            type="text"
+            formControlName="amountInWordsPrimary"
           />
           <input
+            #amountInWordsSecondary
             type="text"
-            class="border-b w-full mt-4 outline-none focus:border-indigo-500"
-            disabled
+            class="border-b w-full mt-4 outline-none text-sm focus:border-indigo-500"
+            formControlName="amountInWordsSecondary"
           />
         </div>
         <div class="w-[28%]">
@@ -37,6 +41,7 @@
           <input
             #Amount
             type="text"
+            formControlName="amount"
             class="border w-[80%] h-[42px] mt-1 outline-none pl-1.5 text-lg font-extrabold focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500"
           />
         </div>
@@ -59,8 +64,15 @@
       </div>
 
       <div class="flex items-center justify-center w-full mt-2">
-        <img src="misc.png" alt="" class="w-[65%] rounded-full" />
+        <img src="misc.png" alt="" class="w-[65%] rounded-full dark:invert" />
       </div>
     </form>
   </div>
+  <button
+    type="submit"
+    class="bg-indigo-600 px-2 py-1 rounded-lg text-white mt-12 hover:bg-indigo-700 cursor-pointer"
+  >
+    Print
+    {{ this.chequeForm.value.amount }}
+  </button>
 </main>

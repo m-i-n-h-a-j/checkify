@@ -10,7 +10,7 @@ export const routes: Routes = [
   {
     path: 'home',
     component: HomePage,
-    title: 'Ragam',
+    title: 'Checkify',
   },
  // { path: '**', component: NotFound },
 ];
