@@ -1,0 +1,66 @@
+<main class="h-screen bg-gray-200 flex items-center justify-center">
+  <div class="h-[338px] w-[830px] bg-[#fafafb] opacity-80 px-[55px] py-[26px] drop-shadow-md">
+    <form [formGroup]="chequeForm" (ngSubmit)="onSubmit()">
+      <div class="flex items-start justify-between">
+        <span class="text-3xl font-bold text-black">CHECKIFY</span>
+        <app-account-number-txtbox-component />
+      </div>
+      <input
+        type="text"
+        class="border-b w-full mt-1.5 outline-none placeholder:text-sm focus:border-indigo-500"
+        placeholder="PAY"
+        disabled
+      />
+
+      <div class="mt-2 flex flex-row items-end h-[71px] justify-between">
+        <div class="w-[70%]">
+          <input
+            type="text"
+            class="border-b w-full mt-1 outline-none placeholder:text-sm focus:border-indigo-500"
+            placeholder="SUM OF"
+            disabled
+          />
+          <input
+            type="text"
+            class="border-b w-full mt-4 outline-none focus:border-indigo-500"
+            disabled
+          />
+        </div>
+        <div class="w-[28%]">
+          <input
+            type="text"
+            class="border w-[20%] h-[42px] mt-1 outline-none text-center text-lg font-extrabold placeholder:text-2xl"
+            placeholder="₹"
+            disabled
+          />
+
+          <input
+            #Amount
+            type="text"
+            class="border w-[80%] h-[42px] mt-1 outline-none pl-1.5 text-lg font-extrabold focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500"
+          />
+        </div>
+      </div>
+      <div class="flex flex-row items-end justify-between mt-6 h-[75px]">
+        <div class="w-[52%] mb-auto">
+          <input
+            type="text"
+            class="border w-[18%] h-9 outline-none placeholder:text-sm placeholder:text-center"
+            placeholder="Acc No"
+            disabled
+          />
+          <input type="text" class="border w-[82%] h-9 outline-none" disabled />
+        </div>
+
+        <div class="w-[26%] flex flex-col items-center justify-end">
+          <input type="text" class="border-b w-full mt-1 outline-none" disabled />
+          <span class="text-sm flex items-center justify-center mt-2">Please Sign Above</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-center w-full mt-2">
+        <img src="misc.png" alt="" class="w-[65%] rounded-full" />
+      </div>
+    </form>
+  </div>
+</main>
