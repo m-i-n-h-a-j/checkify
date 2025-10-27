@@ -1,5 +1,4 @@
 import { Component, ElementRef, OnInit, signal, ViewChild } from '@angular/core';
-import { AccountNumberTxtboxComponent } from '../../components/account-number-txtbox-component/account-number-txtbox-component';
 import {
   FormControl,
   ReactiveFormsModule,
@@ -8,10 +7,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { DatePicker } from 'primeng/datepicker';
+import { DateInputComponent } from '../../components/date-input-component/date-input-component';
 
 @Component({
   selector: 'app-home-page',
-  imports: [AccountNumberTxtboxComponent, FormsModule, ReactiveFormsModule, DatePicker],
+  imports: [FormsModule, ReactiveFormsModule, DatePicker, DateInputComponent],
   templateUrl: './home-page.html',
   styleUrl: './home-page.css',
 })
@@ -19,6 +19,15 @@ export class HomePage implements OnInit {
   @ViewChild('amountInWordsPrimary') primaryBox!: ElementRef<HTMLInputElement>;
   isDark = signal<boolean>(false);
   systemTheme = signal(window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+  setDate(event: string) {
+    this.chequeForm.patchValue(
+      {
+        date: event ?? '',
+      },
+      { emitEvent: false }
+    );
+  }
 
   setTheme() {
     if (localStorage.getItem('isDark') == 'false') {
@@ -103,7 +112,7 @@ export class HomePage implements OnInit {
     }
   }
 
-  numberToWords(num: number): string {
+  private numberToWords(num: number): string {
     const a = [
       '',
       'One',

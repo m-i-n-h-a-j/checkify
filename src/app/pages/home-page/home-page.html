@@ -5,7 +5,13 @@
     <form [formGroup]="chequeForm" (ngSubmit)="onSubmit()">
       <div class="flex items-start justify-between">
         <span (click)="toggleDarkMode()" class="text-3xl font-bold">CHECKIFY</span>
-        <p-datepicker formControlName="date" />
+        <p-datepicker
+          formControlName="date"
+          dateFormat="dd/mm/yy"
+          [showIcon]="true"
+          inputStyleClass="segmented-date-input"
+        />
+        <app-date-input-component (dateChangeEvent)="setDate($event)" />
       </div>
       <input
         type="text"
@@ -73,6 +79,5 @@
     class="bg-indigo-600 px-2 py-1 rounded-lg text-white mt-12 hover:bg-indigo-700 cursor-pointer"
   >
     Print
-    {{ this.chequeForm.value.amount }}
   </button>
 </main>
