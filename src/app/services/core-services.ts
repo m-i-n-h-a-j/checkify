@@ -1,9 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
+import { Cheque } from '../models/check';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CoreServices {
+  chequePresets = signal<Array<Cheque>>([]);
+
   numberToWords(num: number): string {
     const a = [
       '',
@@ -82,5 +85,10 @@ export class CoreServices {
       ' Crore' +
       (num % 10000000 ? ' ' + this.numberToWords(num % 10000000) : '')
     );
+  }
+
+  setPreset(id: number) {
+    const idx = this.chequePresets().findIndex((t) => t.id === id);
+    const preset = this.chequePresets()[idx];
   }
 }

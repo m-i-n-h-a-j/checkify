@@ -82,15 +82,24 @@
 
 <div [hidden]="!this.isPrintSectionVisible()" class="w-full px-4">
   <section id="print" class="bg-gray-50 dark:bg-gray-950 rounded-2xl w-full py-4 px-6">
-    <div [hidden]="true" class="flex flex-row gap-1 items-center justify-start">
+    <div
+      [hidden]="!this.showSelectPresets()"
+      class="flex flex-row gap-1 items-center justify-start"
+    >
       <label for="fruit" class="text-sm font-medium">Choose a layout:</label>
       <select
         id="fruit"
         class="border rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-indigo-500 focus:border-indigo-500 w-fit"
       >
-        <option value="l1">Layout 1</option>
-        <option value="l2">Layout 2</option>
-        <option value="l3">Layout 3</option>
+        @for(preset of this.coreService.chequePresets(); track preset.id){
+        <option
+          (click)="this.coreService.setPreset(preset.id)"
+          class="bg-gray-50 dark:bg-gray-950"
+          value="l{{ preset.id }}"
+        >
+          Preset {{ preset.id }}
+        </option>
+        }
       </select>
     </div>
 

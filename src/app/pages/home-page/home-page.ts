@@ -10,6 +10,7 @@ import { DateInputComponent } from '../../components/date-input-component/date-i
 import { CoreServices } from '../../services/core-services';
 import { CommonModule } from '@angular/common';
 import { PrintComponent } from '../../components/print-component/print-component';
+import { Cheque } from '../../models/check';
 
 @Component({
   selector: 'app-home-page',
@@ -23,13 +24,14 @@ export class HomePage implements OnInit {
   systemTheme = signal(window.matchMedia('(prefers-color-scheme: dark)').matches);
   coreService = inject(CoreServices);
   isPrintSectionVisible = signal<boolean>(false);
+  showSelectPresets = signal<boolean>(false);
 
   setDate(event: string) {
     this.chequeForm.patchValue(
       {
         date: event ?? '',
       },
-      { emitEvent: false },
+      { emitEvent: false }
     );
   }
 
@@ -64,6 +66,13 @@ export class HomePage implements OnInit {
   });
 
   ngOnInit() {
+    const storedPresets = localStorage.getItem('chequePresets');
+    const chequePresets: Cheque[] = storedPresets ? JSON.parse(storedPresets) : [];
+    if (chequePresets.length > 0) {
+      const presets: Cheque[] = JSON.parse(localStorage.getItem('chequePresets') || '[]');
+      this.coreService.chequePresets.set(presets);
+      this.showSelectPresets.set(true);
+    }
     this.setTheme();
     this.chequeForm.get('amount')?.valueChanges.subscribe((value) => {
       const amount = Number(value);
@@ -76,7 +85,7 @@ export class HomePage implements OnInit {
             amountInWordsPrimary: '',
             amountInWordsSecondary: '',
           },
-          { emitEvent: false },
+          { emitEvent: false }
         );
       }
     });
@@ -102,7 +111,7 @@ export class HomePage implements OnInit {
           amountInWordsPrimary: fullText,
           amountInWordsSecondary: '',
         },
-        { emitEvent: false },
+        { emitEvent: false }
       );
     } else {
       let cutIndex = fullText.length;
@@ -120,7 +129,7 @@ export class HomePage implements OnInit {
           amountInWordsPrimary: fullText.substring(0, cutIndex),
           amountInWordsSecondary: fullText.substring(cutIndex).trim(),
         },
-        { emitEvent: false },
+        { emitEvent: false }
       );
     }
   }
