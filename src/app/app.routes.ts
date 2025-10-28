@@ -12,5 +12,5 @@ export const routes: Routes = [
     component: HomePage,
     title: 'Checkify',
   },
- // { path: '**', component: NotFound },
+  // { path: '**', component: NotFound },
 ];

@@ -135,6 +135,7 @@ export class HomePage implements OnInit {
       'Eighteen',
       'Nineteen',
     ];
+
     const b = [
       '',
       '',
