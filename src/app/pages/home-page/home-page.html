@@ -69,13 +69,14 @@
       </div>
     </form>
   </div>
+
   <button
     (click)="showPrintSection()"
     (click)="scrollToSection('print')"
     type="submit"
     class="bg-indigo-600 px-2 py-1 rounded-lg text-white mt-4 hover:bg-indigo-700 cursor-pointer"
   >
-    Print
+    Next
   </button>
 </main>
 
@@ -94,7 +95,7 @@
     </div>
 
     <app-print-component
-      [date]="'2 8 1 0 2 0 2 5'"
+      [date]="this.chequeForm.value.date ?? ''"
       [name]="this.chequeForm.value.name ?? ''"
       [amount]="this.chequeForm.value.amount ?? ''"
       [amntInWordsLine1]="this.chequeForm.value.amountInWordsPrimary ?? ''"

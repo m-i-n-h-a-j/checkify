@@ -8,9 +8,8 @@ describe('PrintComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PrintComponent]
-    })
-    .compileComponents();
+      imports: [PrintComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PrintComponent);
     component = fixture.componentInstance;

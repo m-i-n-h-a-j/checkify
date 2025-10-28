@@ -144,9 +144,12 @@
       <span class="absolute text-sm" [style.top.cm]="amntLine2Top" [style.left.cm]="amntLine2Left">
         {{ this.amntInWordsLine2() }}
       </span>
-      <span class="absolute font-bold text-2xl" [style.top.cm]="amountTop" [style.left.cm]="amountLeft">{{
-        this.amount() + '.00'
-      }}</span>
+      <span
+        class="absolute font-bold text-2xl"
+        [style.top.cm]="amountTop"
+        [style.left.cm]="amountLeft"
+        >{{ this.amount() + '.00' }}</span
+      >
     </div>
   </div>
 </div>

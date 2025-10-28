@@ -41,8 +41,9 @@ export class DateInputComponent implements OnInit {
     date8: new FormControl('', Validators.required),
   });
 
-  moveRightFrom1(event: KeyboardEvent) {
+  moveFrom1(event: KeyboardEvent) {
     event.preventDefault();
+
     if (Number(event.key) / 10 < 1) {
       setTimeout(() => this.renderer.selectRootElement(this.date2.nativeElement).focus(), 0);
       this.dateForm.patchValue({
@@ -50,10 +51,13 @@ export class DateInputComponent implements OnInit {
       });
     } else if (event.key == 'ArrowRight') {
       setTimeout(() => this.renderer.selectRootElement(this.date2.nativeElement).focus(), 0);
+    } else if (event.key == 'Backspace') {
+      this.dateForm.patchValue({
+        date1: '',
+      });
     }
-
   }
-  moveRightFrom2(event: KeyboardEvent) {
+  moveFrom2(event: KeyboardEvent) {
     event.preventDefault();
     if (Number(event.key) / 10 < 1) {
       setTimeout(() => this.renderer.selectRootElement(this.date3.nativeElement).focus(), 0);
@@ -64,9 +68,17 @@ export class DateInputComponent implements OnInit {
       setTimeout(() => this.renderer.selectRootElement(this.date3.nativeElement).focus(), 0);
     } else if (event.key == 'ArrowLeft') {
       setTimeout(() => this.renderer.selectRootElement(this.date1.nativeElement).focus(), 0);
+    } else if (event.key == 'Backspace') {
+      if (this.dateForm.value.date2 == '') {
+        setTimeout(() => this.renderer.selectRootElement(this.date1.nativeElement).focus(), 0);
+      } else {
+        this.dateForm.patchValue({
+          date2: '',
+        });
+      }
     }
   }
-  moveRightFrom3(event: KeyboardEvent) {
+  moveFrom3(event: KeyboardEvent) {
     event.preventDefault();
     if (Number(event.key) / 10 < 1) {
       setTimeout(() => this.renderer.selectRootElement(this.date4.nativeElement).focus(), 0);
@@ -77,9 +89,17 @@ export class DateInputComponent implements OnInit {
       setTimeout(() => this.renderer.selectRootElement(this.date4.nativeElement).focus(), 0);
     } else if (event.key == 'ArrowLeft') {
       setTimeout(() => this.renderer.selectRootElement(this.date2.nativeElement).focus(), 0);
+    } else if (event.key == 'Backspace') {
+      if (this.dateForm.value.date3 == '') {
+        setTimeout(() => this.renderer.selectRootElement(this.date2.nativeElement).focus(), 0);
+      } else {
+        this.dateForm.patchValue({
+          date3: '',
+        });
+      }
     }
   }
-  moveRightFrom4(event: KeyboardEvent) {
+  moveFrom4(event: KeyboardEvent) {
     event.preventDefault();
     if (Number(event.key) / 10 < 1) {
       setTimeout(() => this.renderer.selectRootElement(this.date5.nativeElement).focus(), 0);
@@ -90,9 +110,17 @@ export class DateInputComponent implements OnInit {
       setTimeout(() => this.renderer.selectRootElement(this.date5.nativeElement).focus(), 0);
     } else if (event.key == 'ArrowLeft') {
       setTimeout(() => this.renderer.selectRootElement(this.date3.nativeElement).focus(), 0);
+    } else if (event.key == 'Backspace') {
+      if (this.dateForm.value.date4 == '') {
+        setTimeout(() => this.renderer.selectRootElement(this.date3.nativeElement).focus(), 0);
+      } else {
+        this.dateForm.patchValue({
+          date4: '',
+        });
+      }
     }
   }
-  moveRightFrom5(event: KeyboardEvent) {
+  moveFrom5(event: KeyboardEvent) {
     event.preventDefault();
     if (Number(event.key) / 10 < 1) {
       setTimeout(() => this.renderer.selectRootElement(this.date6.nativeElement).focus(), 0);
@@ -103,9 +131,17 @@ export class DateInputComponent implements OnInit {
       setTimeout(() => this.renderer.selectRootElement(this.date6.nativeElement).focus(), 0);
     } else if (event.key == 'ArrowLeft') {
       setTimeout(() => this.renderer.selectRootElement(this.date4.nativeElement).focus(), 0);
+    } else if (event.key == 'Backspace') {
+      if (this.dateForm.value.date5 == '') {
+        setTimeout(() => this.renderer.selectRootElement(this.date4.nativeElement).focus(), 0);
+      } else {
+        this.dateForm.patchValue({
+          date5: '',
+        });
+      }
     }
   }
-  moveRightFrom6(event: KeyboardEvent) {
+  moveFrom6(event: KeyboardEvent) {
     event.preventDefault();
     if (Number(event.key) / 10 < 1) {
       setTimeout(() => this.renderer.selectRootElement(this.date7.nativeElement).focus(), 0);
@@ -116,9 +152,17 @@ export class DateInputComponent implements OnInit {
       setTimeout(() => this.renderer.selectRootElement(this.date7.nativeElement).focus(), 0);
     } else if (event.key == 'ArrowLeft') {
       setTimeout(() => this.renderer.selectRootElement(this.date5.nativeElement).focus(), 0);
+    } else if (event.key == 'Backspace') {
+      if (this.dateForm.value.date6 == '') {
+        setTimeout(() => this.renderer.selectRootElement(this.date5.nativeElement).focus(), 0);
+      } else {
+        this.dateForm.patchValue({
+          date6: '',
+        });
+      }
     }
   }
-  moveRightFrom7(event: KeyboardEvent) {
+  moveFrom7(event: KeyboardEvent) {
     event.preventDefault();
     if (Number(event.key) / 10 < 1) {
       setTimeout(() => this.renderer.selectRootElement(this.date8.nativeElement).focus(), 0);
@@ -129,9 +173,17 @@ export class DateInputComponent implements OnInit {
       setTimeout(() => this.renderer.selectRootElement(this.date8.nativeElement).focus(), 0);
     } else if (event.key == 'ArrowLeft') {
       setTimeout(() => this.renderer.selectRootElement(this.date6.nativeElement).focus(), 0);
+    } else if (event.key == 'Backspace') {
+      if (this.dateForm.value.date7 == '') {
+        setTimeout(() => this.renderer.selectRootElement(this.date6.nativeElement).focus(), 0);
+      } else {
+        this.dateForm.patchValue({
+          date7: '',
+        });
+      }
     }
   }
-  moveRightFrom8(event: KeyboardEvent) {
+  moveFrom8(event: KeyboardEvent) {
     event.preventDefault();
     if (Number(event.key) / 10 < 1) {
       this.dateForm.patchValue({
@@ -139,6 +191,14 @@ export class DateInputComponent implements OnInit {
       });
     } else if (event.key == 'ArrowLeft') {
       setTimeout(() => this.renderer.selectRootElement(this.date7.nativeElement).focus(), 0);
+    } else if (event.key == 'Backspace') {
+      if (this.dateForm.value.date8 == '') {
+        setTimeout(() => this.renderer.selectRootElement(this.date7.nativeElement).focus(), 0);
+      } else {
+        this.dateForm.patchValue({
+          date8: '',
+        });
+      }
     }
   }
 
