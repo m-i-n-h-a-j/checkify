@@ -3,7 +3,6 @@
 @import 'primeicons/primeicons.css';
 @custom-variant dark (&:where(.my-app-dark, .my-app-dark *));
 
-html,
-body {
+html {
   font-family: 'Roboto Mono', monospace;
 }

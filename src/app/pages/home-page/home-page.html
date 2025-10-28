@@ -1,22 +1,17 @@
-<main class="bg-gray-300 dark:bg-gray-900 h-screen flex flex-col items-center justify-center">
+<main class="h-[calc(100vh/1.3)] flex flex-col items-center justify-center">
   <div
     class="h-[338px] w-[830px] bg-[#fafafb] dark:bg-gray-950 opacity-80 px-[55px] py-[26px] drop-shadow-md"
   >
     <form [formGroup]="chequeForm" (ngSubmit)="onSubmit()">
       <div class="flex items-start justify-between">
         <span (click)="toggleDarkMode()" class="text-3xl font-bold">CHECKIFY</span>
-        <p-datepicker
-          formControlName="date"
-          dateFormat="dd/mm/yy"
-          [showIcon]="true"
-          inputStyleClass="segmented-date-input"
-        />
         <app-date-input-component (dateChangeEvent)="setDate($event)" />
       </div>
       <input
         type="text"
         class="border-b w-full mt-1.5 outline-none font-semibold placeholder:text-sm placeholder:font-normal uppercase focus:border-indigo-500"
         placeholder="PAY"
+        formControlName="name"
       />
 
       <div class="mt-2 flex flex-row items-end h-[71px] justify-between">
@@ -24,7 +19,7 @@
           <input
             #amountInWordsPrimary
             type="text"
-            class="border-b w-full mt-1 outline-none text-sm placeholder:text-sm focus:border-indigo-500"
+            class="border-b w-full mt-1 outline-none text-sm placeholder:text-sm focus:border-indigo-500 pointer-events-none"
             placeholder="SUM OF"
             type="text"
             formControlName="amountInWordsPrimary"
@@ -32,7 +27,7 @@
           <input
             #amountInWordsSecondary
             type="text"
-            class="border-b w-full mt-4 outline-none text-sm focus:border-indigo-500"
+            class="border-b w-full mt-4 outline-none text-sm focus:border-indigo-500 pointer-events-none"
             formControlName="amountInWordsSecondary"
           />
         </div>
@@ -75,9 +70,35 @@
     </form>
   </div>
   <button
+    (click)="showPrintSection()"
+    (click)="scrollToSection('print')"
     type="submit"
-    class="bg-indigo-600 px-2 py-1 rounded-lg text-white mt-12 hover:bg-indigo-700 cursor-pointer"
+    class="bg-indigo-600 px-2 py-1 rounded-lg text-white mt-4 hover:bg-indigo-700 cursor-pointer"
   >
     Print
   </button>
 </main>
+
+<div [hidden]="!this.isPrintSectionVisible()" class="w-full px-4">
+  <section id="print" class="bg-gray-50 dark:bg-gray-950 rounded-2xl w-full py-4 px-6">
+    <div [hidden]="true" class="flex flex-row gap-1 items-center justify-start">
+      <label for="fruit" class="text-sm font-medium">Choose a layout:</label>
+      <select
+        id="fruit"
+        class="border rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-indigo-500 focus:border-indigo-500 w-fit"
+      >
+        <option value="l1">Layout 1</option>
+        <option value="l2">Layout 2</option>
+        <option value="l3">Layout 3</option>
+      </select>
+    </div>
+
+    <app-print-component
+      [date]="'2 8 1 0 2 0 2 5'"
+      [name]="this.chequeForm.value.name ?? ''"
+      [amount]="this.chequeForm.value.amount ?? ''"
+      [amntInWordsLine1]="this.chequeForm.value.amountInWordsPrimary ?? ''"
+      [amntInWordsLine2]="this.chequeForm.value.amountInWordsSecondary ?? ''"
+    />
+  </section>
+</div>
