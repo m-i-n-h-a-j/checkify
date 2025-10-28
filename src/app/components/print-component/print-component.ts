@@ -37,5 +37,20 @@ export class PrintComponent implements OnInit {
   ngOnInit(): void {
     this.width = '25.4';
     this.height = '11.4';
+
+    this.dateTop = '0.75';
+    this.dateLeft = '20';
+
+    this.nameTop = '2';
+    this.nameLeft = '1.5';
+
+    this.amntLine1Top = '4';
+    this.amntLine1Left = '1.5';
+
+    this.amntLine2Top = '6';
+    this.amntLine2Left = '1.5';
+
+    this.amountTop = '7';
+    this.amountLeft = '20';
   }
 }
