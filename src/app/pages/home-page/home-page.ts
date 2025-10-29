@@ -1,4 +1,13 @@
-import { Component, computed, ElementRef, inject, OnInit, signal, ViewChild } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  ElementRef,
+  inject,
+  OnInit,
+  signal,
+  ViewChild,
+} from '@angular/core';
 import {
   FormControl,
   ReactiveFormsModule,
@@ -20,6 +29,7 @@ import { Cheque } from '../../models/check';
 })
 export class HomePage implements OnInit {
   @ViewChild('amountInWordsPrimary') primaryBox!: ElementRef<HTMLInputElement>;
+
   isDark = signal<boolean>(false);
   systemTheme = signal(window.matchMedia('(prefers-color-scheme: dark)').matches);
   coreService = inject(CoreServices);
@@ -73,14 +83,15 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     const storedPresets = localStorage.getItem('chequePresets');
-    const chequePresets: Cheque[] = storedPresets ? JSON.parse(storedPresets) : [];
-
-    if (chequePresets.length > 0) {
-      const presets: Cheque[] = JSON.parse(localStorage.getItem('chequePresets') || '[]');
-      console.log(presets);
-      this.coreService.chequePresets.set(presets);
-      const last = localStorage.getItem('lastPreset');
-      this.coreService.selectedPreset.set(Number(last) ?? 1);
+    if (storedPresets != null) {
+      const chequePresets: Cheque[] = storedPresets ? JSON.parse(storedPresets) : [];
+      if (chequePresets.length > 0) {
+        const presets: Cheque[] = JSON.parse(storedPresets || '[]');
+        this.coreService.chequePresets.set(presets);
+        const last = localStorage.getItem('lastPreset');
+        this.coreService.selectedPreset.set(Number(last) ?? 0);
+        console.log('hi');
+      }
     }
 
     this.setTheme();

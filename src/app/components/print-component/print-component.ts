@@ -1,4 +1,4 @@
-import { Component, effect, inject, input, OnInit, signal } from '@angular/core';
+import { Component, effect, inject, input, signal } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { FloatLabel } from 'primeng/floatlabel';
@@ -12,25 +12,28 @@ import { CoreServices } from '../../services/core-services';
   templateUrl: './print-component.html',
   styleUrl: './print-component.css',
 })
-export class PrintComponent implements OnInit {
+export class PrintComponent {
   constructor() {
     effect(() => {
       const currentId = this.coreService.selectedPreset();
+      if (currentId != null) {
+        const preset = this.coreService.chequePresets()[currentId];
 
-      const preset = this.coreService.chequePresets()[currentId! - 1];
-
-      this.width = preset.width;
-      this.height = preset.height;
-      this.dateTop = preset.dateTop;
-      this.dateLeft = preset.dateLeft;
-      this.nameTop = preset.nameTop;
-      this.nameLeft = preset.nameLeft;
-      this.amntLine1Top = preset.amntLine1Top;
-      this.amntLine1Left = preset.amntLine1Left;
-      this.amntLine2Top = preset.amntLine2Top;
-      this.amntLine2Left = preset.amntLine2Left;
-      this.amountTop = preset.amountTop;
-      this.amountLeft = preset.amountLeft;
+        this.width = preset.width;
+        this.height = preset.height;
+        this.dateTop = preset.dateTop;
+        this.dateLeft = preset.dateLeft;
+        this.nameTop = preset.nameTop;
+        this.nameLeft = preset.nameLeft;
+        this.amntLine1Top = preset.amntLine1Top;
+        this.amntLine1Left = preset.amntLine1Left;
+        this.amntLine2Top = preset.amntLine2Top;
+        this.amntLine2Left = preset.amntLine2Left;
+        this.amountTop = preset.amountTop;
+        this.amountLeft = preset.amountLeft;
+      } else {
+        this.setDefaultPreset();
+      }
     });
   }
 
@@ -61,24 +64,24 @@ export class PrintComponent implements OnInit {
   amntInWordsLine1 = input<string>();
   amntInWordsLine2 = input<string>();
 
-  ngOnInit(): void {
-    this.width = '25.4';
-    this.height = '11.4';
+  setDefaultPreset() {
+    this.width = '20';
+    this.height = '10';
 
     this.dateTop = '0.75';
-    this.dateLeft = '20';
+    this.dateLeft = '16';
 
     this.nameTop = '2';
     this.nameLeft = '1.5';
 
-    this.amntLine1Top = '4';
+    this.amntLine1Top = '3.5';
     this.amntLine1Left = '1.5';
 
-    this.amntLine2Top = '6';
+    this.amntLine2Top = '5';
     this.amntLine2Left = '1.5';
 
-    this.amountTop = '7';
-    this.amountLeft = '20';
+    this.amountTop = '6.5';
+    this.amountLeft = '14';
   }
 
   saveLayout() {
@@ -86,7 +89,7 @@ export class PrintComponent implements OnInit {
     const chequePresets: Cheque[] = storedPresets ? JSON.parse(storedPresets) : [];
 
     const cheque: Cheque = {
-      id: chequePresets.length + 1,
+      id: chequePresets.length,
       width: this.width ?? '',
       height: this.height ?? '',
       dateTop: this.dateTop ?? '',
@@ -104,7 +107,6 @@ export class PrintComponent implements OnInit {
     chequePresets.push(cheque);
     this.coreService.chequePresets.set(chequePresets);
     localStorage.setItem('chequePresets', JSON.stringify(chequePresets));
-    this.isMessageVisible.set(true);
-    setTimeout(() => this.isMessageVisible.set(false), 3000);
+    // this.coreService.selectedPreset.set(chequePresets.length - 1);
   }
 }

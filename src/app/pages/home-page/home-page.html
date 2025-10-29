@@ -89,13 +89,16 @@
       <label for="fruit" class="text-sm font-medium">Choose a layout:</label>
       <select
         (change)="this.coreService.setPreset($event)"
-        [selectedIndex]="this.coreService.selectedPreset()! - 1"
+        id="presetSelect"
         id="fruit"
         class="border rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-indigo-500 focus:border-indigo-500 w-fit"
       >
         @for(preset of this.coreService.chequePresets(); track preset.id){
-        <option class="bg-gray-50 dark:bg-gray-950" value="{{ preset.id }}">
-          Preset {{ preset.id }}
+        <option
+          class="bg-gray-50 dark:bg-gray-950 flex items-center justify-center"
+          value="{{ preset.id }}"
+        >
+          Preset {{ preset.id + 1 }}
         </option>
         }
       </select>
