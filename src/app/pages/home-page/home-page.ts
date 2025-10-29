@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, OnInit, signal, ViewChild } from '@angular/core';
+import { Component, computed, ElementRef, inject, OnInit, signal, ViewChild } from '@angular/core';
 import {
   FormControl,
   ReactiveFormsModule,
@@ -24,7 +24,13 @@ export class HomePage implements OnInit {
   systemTheme = signal(window.matchMedia('(prefers-color-scheme: dark)').matches);
   coreService = inject(CoreServices);
   isPrintSectionVisible = signal<boolean>(false);
-  showSelectPresets = signal<boolean>(false);
+  showSelectPresets = computed(() => {
+    if (this.coreService.chequePresets().length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  });
 
   setDate(event: string) {
     this.chequeForm.patchValue(
@@ -68,11 +74,15 @@ export class HomePage implements OnInit {
   ngOnInit() {
     const storedPresets = localStorage.getItem('chequePresets');
     const chequePresets: Cheque[] = storedPresets ? JSON.parse(storedPresets) : [];
+
     if (chequePresets.length > 0) {
       const presets: Cheque[] = JSON.parse(localStorage.getItem('chequePresets') || '[]');
+      console.log(presets);
       this.coreService.chequePresets.set(presets);
-      this.showSelectPresets.set(true);
+      const last = localStorage.getItem('lastPreset');
+      this.coreService.selectedPreset.set(Number(last) ?? 1);
     }
+
     this.setTheme();
     this.chequeForm.get('amount')?.valueChanges.subscribe((value) => {
       const amount = Number(value);

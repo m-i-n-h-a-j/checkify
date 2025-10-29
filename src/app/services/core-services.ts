@@ -6,6 +6,7 @@ import { Cheque } from '../models/check';
 })
 export class CoreServices {
   chequePresets = signal<Array<Cheque>>([]);
+  selectedPreset = signal<number | null>(null);
 
   numberToWords(num: number): string {
     const a = [
@@ -87,8 +88,9 @@ export class CoreServices {
     );
   }
 
-  setPreset(id: number) {
-    const idx = this.chequePresets().findIndex((t) => t.id === id);
-    const preset = this.chequePresets()[idx];
+  setPreset(event: Event) {
+    const id = (event.target as HTMLSelectElement).value;
+    this.selectedPreset.set(Number(id));
+    localStorage.setItem('lastPreset', id);
   }
 }

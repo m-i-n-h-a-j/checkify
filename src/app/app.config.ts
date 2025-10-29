@@ -8,7 +8,7 @@ import { provideRouter, withViewTransitions } from '@angular/router';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
-import Aura from '@primeuix/themes/aura';
+import Lara from '@primeuix/themes/lara';
 import { RagamTheme } from './theme/theme';
 
 export const appConfig: ApplicationConfig = {
