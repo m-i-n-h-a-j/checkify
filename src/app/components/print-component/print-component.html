@@ -128,7 +128,7 @@
 
   <div class="my-8">
     <div
-      id="print-section"
+      id="chequePrint"
       class="bg-white dark:bg-black mx-auto relative drop-shadow-md"
       [style.height.cm]="this.height"
       [style.width.cm]="this.width"
@@ -166,7 +166,7 @@
     <p-message severity="success" styleClass="w-fit">New Preset Added</p-message>
     }
     <button
-      (click)="printSection('print-section')"
+      (click)="printSection('chequePrint')"
       class="bg-indigo-600 px-4 py-3 rounded-lg text-white hover:bg-indigo-700 cursor-pointer"
     >
       Print Section

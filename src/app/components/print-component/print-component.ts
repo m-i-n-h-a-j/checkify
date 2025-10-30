@@ -109,35 +109,31 @@ export class PrintComponent {
     localStorage.setItem('chequePresets', JSON.stringify(chequePresets));
     // this.coreService.selectedPreset.set(chequePresets.length - 1);
   }
-  today = new Date();
-
   printSection(sectionId: string) {
-    const printContent = document.getElementById(sectionId)?.innerHTML;
-    if (!printContent) return;
+    const content = document.getElementById(sectionId)?.innerHTML;
+    if (!content) return;
+
+    const styleTags = Array.from(document.querySelectorAll('link[rel="stylesheet"], style'))
+      .map((tag) => tag.outerHTML)
+      .join('');
 
     const printWindow = window.open('', '_blank', 'width=800,height=600');
     printWindow!.document.open();
     printWindow!.document.write(`
-      <html>
-        <head>
-          <title>Print</title>
-          <link rel="stylesheet" href="styles.css">
-          <style>
-            body {
-              font-family: Arial, sans-serif;
-              padding: 20px;
-            }
-            @page {
-              size: auto;
-              margin: 20mm;
-            }
-          </style>
-        </head>
-        <body onload="window.print(); window.close();">
-          ${printContent}
-        </body>
-      </html>
-    `);
+    <html>
+      <head>
+        <title>Print</title>
+        ${styleTags}
+        <style>
+          @page { margin: 20mm; }
+          body { padding: 20px; }
+        </style>
+      </head>
+      <body onload="window.print(); window.close();">
+        ${content}
+      </body>
+    </html>
+  `);
     printWindow!.document.close();
   }
 }
