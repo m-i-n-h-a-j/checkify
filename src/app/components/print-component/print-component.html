@@ -128,7 +128,8 @@
 
   <div class="my-8">
     <div
-      class="bg-gray-200 dark:bg-gray-800 mx-auto relative"
+      id="print-section"
+      class="bg-white dark:bg-black mx-auto relative drop-shadow-md"
       [style.height.cm]="this.height"
       [style.width.cm]="this.width"
     >
@@ -153,7 +154,7 @@
     </div>
   </div>
 
-  <div class="flex items-center justify-start mt-4 gap-4">
+  <div class="flex items-center justify-between mt-4 gap-4">
     <button
       (click)="saveLayout()"
       class="bg-indigo-600 px-4 py-3 rounded-lg text-white hover:bg-indigo-700 cursor-pointer"
@@ -162,6 +163,13 @@
     </button>
 
     @if(this.isMessageVisible()){
-    <p-message severity="success" styleClass="w-fit">New Preset Added</p-message>}
+    <p-message severity="success" styleClass="w-fit">New Preset Added</p-message>
+    }
+    <button
+      (click)="printSection('print-section')"
+      class="bg-indigo-600 px-4 py-3 rounded-lg text-white hover:bg-indigo-700 cursor-pointer"
+    >
+      Print Section
+    </button>
   </div>
 </div>
