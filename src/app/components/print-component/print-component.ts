@@ -98,6 +98,7 @@ export class PrintComponent {
 
   showDialog() {
     this.visible = true;
+    this.presetName = '';
   }
   saveLayout() {
     this.visible = false;
