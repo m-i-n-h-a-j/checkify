@@ -1,5 +1,5 @@
 <div>
-  <div class="flex flex-row items-center justify-around my-4 pb-4 overflow-x-auto space-x-4">
+  <div class="flex flex-row items-start justify-around my-4 pb-4 overflow-x-auto space-x-4">
     <div class="space-y-6 mt-8">
       <p-floatlabel>
         <input pInputText pSize="small" id="height" [(ngModel)]="this.height" autocomplete="off" />
@@ -12,163 +12,107 @@
     </div>
     <div class="space-y-6 mt-8">
       <p-floatlabel>
-        <input
-          pInputText
-          pSize="small"
-          id="dateTop"
-          [(ngModel)]="this.dateTop"
-          autocomplete="off"
-        />
+        <input pInputText pSize="small" id="dateTop" [(ngModel)]="this.dateTop" autocomplete="off" />
         <label for="dateTop">Date Top Margin</label>
       </p-floatlabel>
       <p-floatlabel>
-        <input
-          pInputText
-          pSize="small"
-          id="dateLeft"
-          [(ngModel)]="this.dateLeft"
-          autocomplete="off"
-        />
+        <input pInputText pSize="small" id="dateLeft" [(ngModel)]="this.dateLeft" autocomplete="off" />
         <label for="dateLeft">Date Left Margin</label>
+      </p-floatlabel>
+    </div>
+    <div class="space-y-6 mt-8">
+      <p-floatlabel>
+        <input pInputText pSize="small" id="dateSpace" [(ngModel)]="this.dateSpace" autocomplete="off" />
+        <label for="dateSpace">Date Spacing</label>
       </p-floatlabel>
     </div>
 
     <div class="space-y-6 mt-8">
       <p-floatlabel>
-        <input
-          pInputText
-          pSize="small"
-          id="nameTop"
-          [(ngModel)]="this.nameTop"
-          autocomplete="off"
-        />
+        <input pInputText pSize="small" id="nameTop" [(ngModel)]="this.nameTop" autocomplete="off" />
         <label for="nameTop">Name Top Margin</label>
       </p-floatlabel>
       <p-floatlabel>
-        <input
-          pInputText
-          pSize="small"
-          id="nameLeft"
-          [(ngModel)]="this.nameLeft"
-          autocomplete="off"
-        />
+        <input pInputText pSize="small" id="nameLeft" [(ngModel)]="this.nameLeft" autocomplete="off" />
         <label for="nameLeft">Name Left Margin</label>
       </p-floatlabel>
     </div>
 
     <div class="space-y-6 mt-8">
       <p-floatlabel>
-        <input
-          pInputText
-          pSize="small"
-          id="amntLine1Top"
-          [(ngModel)]="this.amntLine1Top"
-          autocomplete="off"
-        />
+        <input pInputText pSize="small" id="amntLine1Top" [(ngModel)]="this.amntLine1Top" autocomplete="off" />
         <label for="amntLine1Top">Line 1 Top Margin</label>
       </p-floatlabel>
       <p-floatlabel>
-        <input
-          pInputText
-          pSize="small"
-          id="amntLine1Left"
-          [(ngModel)]="this.amntLine1Left"
-          autocomplete="off"
-        />
+        <input pInputText pSize="small" id="amntLine1Left" [(ngModel)]="this.amntLine1Left" autocomplete="off" />
         <label for="amntLine1Left">Line 1 Left Margin</label>
       </p-floatlabel>
     </div>
 
     <div class="space-y-6 mt-8">
       <p-floatlabel>
-        <input
-          pInputText
-          pSize="small"
-          id="amntLine2Top"
-          [(ngModel)]="this.amntLine2Top"
-          autocomplete="off"
-        />
+        <input pInputText pSize="small" id="amntLine2Top" [(ngModel)]="this.amntLine2Top" autocomplete="off" />
         <label for="amntLine2Top">Line 2 Top Margin</label>
       </p-floatlabel>
       <p-floatlabel>
-        <input
-          pInputText
-          pSize="small"
-          id="amntLine2Left"
-          [(ngModel)]="this.amntLine2Left"
-          autocomplete="off"
-        />
+        <input pInputText pSize="small" id="amntLine2Left" [(ngModel)]="this.amntLine2Left" autocomplete="off" />
         <label for="amntLine2Left">Line 2 Left Margin</label>
       </p-floatlabel>
     </div>
 
     <div class="space-y-6 mt-8">
       <p-floatlabel>
-        <input
-          pInputText
-          pSize="small"
-          id="amountTop"
-          [(ngModel)]="this.amountTop"
-          autocomplete="off"
-        />
+        <input pInputText pSize="small" id="amountTop" [(ngModel)]="this.amountTop" autocomplete="off" />
         <label for="amountTop">Amount Top Margin</label>
       </p-floatlabel>
       <p-floatlabel>
-        <input
-          pInputText
-          pSize="small"
-          id="amountLeft"
-          [(ngModel)]="this.amountLeft"
-          autocomplete="off"
-        />
+        <input pInputText pSize="small" id="amountLeft" [(ngModel)]="this.amountLeft" autocomplete="off" />
         <label for="amountLeft">Amount Left Margin</label>
       </p-floatlabel>
     </div>
   </div>
 
   <div class="my-8">
-    <div
-      id="chequePrint"
-      class="bg-white dark:bg-black mx-auto relative drop-shadow-md"
-      [style.height.cm]="this.height"
-      [style.width.cm]="this.width"
-    >
-      <span class="absolute" [style.top.cm]="dateTop" [style.left.cm]="dateLeft">{{
-        this.date()
-      }}</span>
-      <span class="absolute font-semibold" [style.top.cm]="nameTop" [style.left.cm]="nameLeft">{{
+    <div id="chequePrint" class="bg-white dark:bg-black mx-auto relative drop-shadow-md" [style.height.cm]="this.height"
+      [style.width.cm]="this.width">
+      <div class="absolute" [style.top.cm]="dateTop" [style.left.cm]="dateLeft">
+
+        <div class="w-fit flex items-center justify-center" > <span> {{this.date()?.[0] ?? ''}}</span>
+          <span [style.margin-left.mm]="dateSpace"> {{this.date()?.[1] ?? ''}}</span>
+          <span [style.margin-left.mm]="dateSpace"> {{this.date()?.[2] ?? ''}}</span>
+          <span [style.margin-left.mm]="dateSpace"> {{this.date()?.[3] ?? ''}}</span>
+          <span [style.margin-left.mm]="dateSpace"> {{this.date()?.[4] ?? ''}}</span>
+          <span [style.margin-left.mm]="dateSpace"> {{this.date()?.[5] ?? ''}}</span>
+          <span [style.margin-left.mm]="dateSpace"> {{this.date()?.[6] ?? ''}}</span>
+          <span [style.margin-left.mm]="dateSpace"> {{this.date()?.[7] ?? ''}}</span>
+        </div>
+
+      </div>
+      <span class="absolute font-semibold ml-2" [style.top.cm]="nameTop" [style.left.cm]="nameLeft">{{
         this.name()?.toUpperCase()
-      }}</span>
-      <span class="absolute text-sm" [style.top.cm]="amntLine1Top" [style.left.cm]="amntLine1Left"
-        >{{ this.amntInWordsLine1() }}
+        }}</span>
+      <span class="absolute text-sm" [style.top.cm]="amntLine1Top" [style.left.cm]="amntLine1Left">{{
+        this.amntInWordsLine1() }}
       </span>
       <span class="absolute text-sm" [style.top.cm]="amntLine2Top" [style.left.cm]="amntLine2Left">
         {{ this.amntInWordsLine2() }}
       </span>
-      <span
-        class="absolute font-bold text-2xl"
-        [style.top.cm]="amountTop"
-        [style.left.cm]="amountLeft"
-        >{{ this.amount() + '.00' }}</span
-      >
+      <span class="absolute font-bold text-2xl" [style.top.cm]="amountTop" [style.left.cm]="amountLeft">{{ this.amount()
+        + '.00' }}</span>
     </div>
   </div>
 
   <div class="flex items-center justify-between mt-4 gap-4">
-    <button
-      (click)="saveLayout()"
-      class="bg-indigo-600 px-4 py-3 rounded-lg text-white hover:bg-indigo-700 cursor-pointer"
-    >
+    <button (click)="saveLayout()"
+      class="bg-indigo-600 px-4 py-3 rounded-lg text-white hover:bg-indigo-700 cursor-pointer">
       Save as Preset
     </button>
 
     @if (this.isMessageVisible()) {
-      <p-message severity="success" styleClass="w-fit">New Preset Added</p-message>
+    <p-message severity="success" styleClass="w-fit">New Preset Added</p-message>
     }
-    <button
-      (click)="printSection('chequePrint')"
-      class="bg-indigo-600 px-4 py-3 rounded-lg text-white hover:bg-indigo-700 cursor-pointer"
-    >
+    <button (click)="printSection('chequePrint')"
+      class="bg-indigo-600 px-4 py-3 rounded-lg text-white hover:bg-indigo-700 cursor-pointer">
       Print Section
     </button>
   </div>

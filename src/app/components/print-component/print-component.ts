@@ -23,6 +23,7 @@ export class PrintComponent {
         this.height = preset.height;
         this.dateTop = preset.dateTop;
         this.dateLeft = preset.dateLeft;
+        this.dateSpace = preset.dateSpace;
         this.nameTop = preset.nameTop;
         this.nameLeft = preset.nameLeft;
         this.amntLine1Top = preset.amntLine1Top;
@@ -35,6 +36,9 @@ export class PrintComponent {
         this.setDefaultPreset();
       }
     });
+    // effect(() => {
+    //   console.log(this.date());
+    // });
   }
 
   isMessageVisible = signal<boolean>(false);
@@ -45,6 +49,7 @@ export class PrintComponent {
 
   dateTop: string | undefined;
   dateLeft: string | undefined;
+  dateSpace: string | undefined;
 
   nameTop: string | undefined;
   nameLeft: string | undefined;
@@ -58,7 +63,7 @@ export class PrintComponent {
   amountTop: string | undefined;
   amountLeft: string | undefined;
 
-  date = input<string>();
+  date = input<string[]>();
   name = input<string>();
   amount = input<string>();
   amntInWordsLine1 = input<string>();
@@ -70,6 +75,7 @@ export class PrintComponent {
 
     this.dateTop = '0.75';
     this.dateLeft = '16';
+    this.dateSpace = '1';
 
     this.nameTop = '2';
     this.nameLeft = '1.5';
@@ -94,6 +100,7 @@ export class PrintComponent {
       height: this.height ?? '',
       dateTop: this.dateTop ?? '',
       dateLeft: this.dateLeft ?? '',
+      dateSpace: this.dateSpace ?? '',
       nameTop: this.nameTop ?? '',
       nameLeft: this.nameLeft ?? '',
       amntLine1Top: this.amntLine1Top ?? '',

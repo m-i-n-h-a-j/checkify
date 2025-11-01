@@ -28,7 +28,7 @@ export class DateInputComponent implements OnInit {
 
   private renderer = inject(Renderer2);
 
-  readonly dateChangeEvent = output<string>();
+  readonly dateChangeEvent = output<string[]>();
 
   dateForm = new FormGroup({
     date1: new FormControl('', Validators.required),
@@ -204,10 +204,9 @@ export class DateInputComponent implements OnInit {
 
   ngOnInit() {
     this.dateForm.valueChanges.subscribe((value) => {
-      const combined = Object.values(value)
-        .map((v) => v || '')
-        .join('');
-      this.dateChangeEvent.emit(combined);
-    });
+
+      const dateArry = Object.values(value).map((v)=>v ?? '');
+     this.dateChangeEvent.emit(dateArry);
+  });    
   }
 }

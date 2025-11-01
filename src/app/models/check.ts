@@ -5,6 +5,7 @@ export type Cheque = {
 
   dateTop: string;
   dateLeft: string;
+  dateSpace:string;
 
   nameTop: string;
   nameLeft: string;

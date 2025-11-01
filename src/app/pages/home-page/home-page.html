@@ -105,7 +105,7 @@
     </div>
 
     <app-print-component
-      [date]="this.chequeForm.value.date ?? ''"
+      [date]="date()"
       [name]="this.chequeForm.value.name ?? ''"
       [amount]="this.chequeForm.value.amount ?? ''"
       [amntInWordsLine1]="this.chequeForm.value.amountInWordsPrimary ?? ''"

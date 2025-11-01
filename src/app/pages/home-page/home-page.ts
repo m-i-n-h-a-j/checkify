@@ -20,6 +20,7 @@ import { CoreServices } from '../../services/core-services';
 import { CommonModule } from '@angular/common';
 import { PrintComponent } from '../../components/print-component/print-component';
 import { Cheque } from '../../models/check';
+import { single } from 'rxjs';
 
 @Component({
   selector: 'app-home-page',
@@ -34,6 +35,7 @@ export class HomePage implements OnInit {
   systemTheme = signal(window.matchMedia('(prefers-color-scheme: dark)').matches);
   coreService = inject(CoreServices);
   isPrintSectionVisible = signal<boolean>(false);
+  date = signal<string[]>([])
   showSelectPresets = computed(() => {
     if (this.coreService.chequePresets().length > 0) {
       return true;
@@ -42,13 +44,8 @@ export class HomePage implements OnInit {
     }
   });
 
-  setDate(event: string) {
-    this.chequeForm.patchValue(
-      {
-        date: event ?? '',
-      },
-      { emitEvent: false },
-    );
+  setDate(event: string[]) {
+    this.date.set(event)
   }
 
   setTheme() {
@@ -72,9 +69,8 @@ export class HomePage implements OnInit {
     }
   }
 
-  onSubmit() {}
+  onSubmit() { }
   chequeForm = new FormGroup({
-    date: new FormControl('', Validators.required),
     name: new FormControl('', Validators.required),
     amount: new FormControl('', Validators.required),
     amountInWordsPrimary: new FormControl('', Validators.required),
