@@ -5,10 +5,12 @@ import { FloatLabel } from 'primeng/floatlabel';
 import { Cheque } from '../../models/check';
 import { Message } from 'primeng/message';
 import { CoreServices } from '../../services/core-services';
+import { Dialog } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-print-component',
-  imports: [FormsModule, InputTextModule, FloatLabel, Message],
+  imports: [FormsModule, InputTextModule, FloatLabel, Message, ButtonModule, Dialog],
   templateUrl: './print-component.html',
   styleUrl: './print-component.css',
 })
@@ -43,6 +45,9 @@ export class PrintComponent {
 
   isMessageVisible = signal<boolean>(false);
   coreService = inject(CoreServices);
+  visible: boolean = false;
+
+  presetName: string | undefined;
 
   width: string | undefined;
   height: string | undefined;
@@ -70,6 +75,7 @@ export class PrintComponent {
   amntInWordsLine2 = input<string>();
 
   setDefaultPreset() {
+    this.presetName = 'default';
     this.width = '20';
     this.height = '10';
 
@@ -90,12 +96,17 @@ export class PrintComponent {
     this.amountLeft = '14';
   }
 
+  showDialog() {
+    this.visible = true;
+  }
   saveLayout() {
+    this.visible = false;
     const storedPresets = localStorage.getItem('chequePresets');
     const chequePresets: Cheque[] = storedPresets ? JSON.parse(storedPresets) : [];
 
     const cheque: Cheque = {
       id: chequePresets.length,
+      presetName: this.presetName ?? '',
       width: this.width ?? '',
       height: this.height ?? '',
       dateTop: this.dateTop ?? '',
@@ -114,7 +125,8 @@ export class PrintComponent {
     chequePresets.push(cheque);
     this.coreService.chequePresets.set(chequePresets);
     localStorage.setItem('chequePresets', JSON.stringify(chequePresets));
-    // this.coreService.selectedPreset.set(chequePresets.length - 1);
+
+    this.coreService.selectedPreset.set(chequePresets.length - 1);
   }
   printSection(sectionId: string) {
     const content = document.getElementById(sectionId)?.innerHTML;

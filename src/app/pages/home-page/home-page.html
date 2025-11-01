@@ -89,6 +89,7 @@
       <label for="fruit" class="text-sm font-medium">Choose a layout:</label>
       <select
         (change)="this.coreService.setPreset($event)"
+      [(ngModel)]="selectedPresetId"
         id="presetSelect"
         id="fruit"
         class="border rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-indigo-500 focus:border-indigo-500 w-fit"
@@ -98,7 +99,7 @@
             class="bg-gray-50 dark:bg-gray-950 flex items-center justify-center"
             value="{{ preset.id }}"
           >
-            Preset {{ preset.id + 1 }}
+         {{preset.presetName}}
           </option>
         }
       </select>

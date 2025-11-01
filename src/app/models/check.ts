@@ -1,5 +1,6 @@
 export type Cheque = {
   id: number;
+  presetName:string;
   width: string;
   height: string;
 

@@ -20,7 +20,6 @@ import { CoreServices } from '../../services/core-services';
 import { CommonModule } from '@angular/common';
 import { PrintComponent } from '../../components/print-component/print-component';
 import { Cheque } from '../../models/check';
-import { single } from 'rxjs';
 
 @Component({
   selector: 'app-home-page',
@@ -29,13 +28,19 @@ import { single } from 'rxjs';
   styleUrl: './home-page.css',
 })
 export class HomePage implements OnInit {
+  constructor() {
+    effect(() => {
+      this.selectedPresetId = this.coreService.selectedPreset() ?? 0;
+    });
+  }
+
   @ViewChild('amountInWordsPrimary') primaryBox!: ElementRef<HTMLInputElement>;
 
   isDark = signal<boolean>(false);
   systemTheme = signal(window.matchMedia('(prefers-color-scheme: dark)').matches);
   coreService = inject(CoreServices);
   isPrintSectionVisible = signal<boolean>(false);
-  date = signal<string[]>([])
+  date = signal<string[]>([]);
   showSelectPresets = computed(() => {
     if (this.coreService.chequePresets().length > 0) {
       return true;
@@ -43,9 +48,10 @@ export class HomePage implements OnInit {
       return false;
     }
   });
+  selectedPresetId = 0;
 
   setDate(event: string[]) {
-    this.date.set(event)
+    this.date.set(event);
   }
 
   setTheme() {
@@ -69,7 +75,7 @@ export class HomePage implements OnInit {
     }
   }
 
-  onSubmit() { }
+  onSubmit() {}
   chequeForm = new FormGroup({
     name: new FormControl('', Validators.required),
     amount: new FormControl('', Validators.required),
@@ -86,7 +92,6 @@ export class HomePage implements OnInit {
         this.coreService.chequePresets.set(presets);
         const last = localStorage.getItem('lastPreset');
         this.coreService.selectedPreset.set(Number(last) ?? 0);
-        console.log('hi');
       }
     }
 
@@ -102,7 +107,7 @@ export class HomePage implements OnInit {
             amountInWordsPrimary: '',
             amountInWordsSecondary: '',
           },
-          { emitEvent: false },
+          { emitEvent: false }
         );
       }
     });
@@ -128,7 +133,7 @@ export class HomePage implements OnInit {
           amountInWordsPrimary: fullText,
           amountInWordsSecondary: '',
         },
-        { emitEvent: false },
+        { emitEvent: false }
       );
     } else {
       let cutIndex = fullText.length;
@@ -146,7 +151,7 @@ export class HomePage implements OnInit {
           amountInWordsPrimary: fullText.substring(0, cutIndex),
           amountInWordsSecondary: fullText.substring(cutIndex).trim(),
         },
-        { emitEvent: false },
+        { emitEvent: false }
       );
     }
   }
