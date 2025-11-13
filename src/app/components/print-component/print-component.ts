@@ -145,8 +145,8 @@ export class PrintComponent {
         <title>Print</title>
         ${styleTags}
         <style>
-          @page { margin: 0mm; }
-          body { padding: 20px; }
+            @page { margin: 0; }
+            body { padding: 0; margin: 0; }
         </style>
       </head>
       <body onload="window.print(); window.close();">
