@@ -204,9 +204,8 @@ export class DateInputComponent implements OnInit {
 
   ngOnInit() {
     this.dateForm.valueChanges.subscribe((value) => {
-
-      const dateArry = Object.values(value).map((v)=>v ?? '');
-     this.dateChangeEvent.emit(dateArry);
-  });    
+      const dateArry = Object.values(value).map((v) => v ?? '');
+      this.dateChangeEvent.emit(dateArry);
+    });
   }
 }

@@ -65,7 +65,7 @@
       </div>
 
       <div class="flex items-center justify-center w-full mt-2">
-        <img src="misc.png" alt="" class="w-[65%] rounded-full dark:invert" />
+        <img src="misc.avif" alt="" class="w-[65%] rounded-full dark:invert" />
       </div>
     </form>
   </div>
@@ -89,18 +89,18 @@
       <label for="fruit" class="text-sm font-medium">Choose a layout:</label>
       <select
         (change)="this.coreService.setPreset($event)"
-      [(ngModel)]="selectedPresetId"
+        [(ngModel)]="selectedPresetId"
         id="presetSelect"
         id="fruit"
         class="border rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-indigo-500 focus:border-indigo-500 w-fit"
       >
         @for (preset of this.coreService.chequePresets(); track preset.id) {
-          <option
-            class="bg-gray-50 dark:bg-gray-950 flex items-center justify-center"
-            value="{{ preset.id }}"
-          >
-         {{preset.presetName}}
-          </option>
+        <option
+          class="bg-gray-50 dark:bg-gray-950 flex items-center justify-center"
+          value="{{ preset.id }}"
+        >
+          {{ preset.presetName }}
+        </option>
         }
       </select>
     </div>

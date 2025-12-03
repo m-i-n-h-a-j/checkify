@@ -107,7 +107,7 @@ export class HomePage implements OnInit {
             amountInWordsPrimary: '',
             amountInWordsSecondary: '',
           },
-          { emitEvent: false }
+          { emitEvent: false },
         );
       }
     });
@@ -133,7 +133,7 @@ export class HomePage implements OnInit {
           amountInWordsPrimary: fullText,
           amountInWordsSecondary: '',
         },
-        { emitEvent: false }
+        { emitEvent: false },
       );
     } else {
       let cutIndex = fullText.length;
@@ -151,7 +151,7 @@ export class HomePage implements OnInit {
           amountInWordsPrimary: fullText.substring(0, cutIndex),
           amountInWordsSecondary: fullText.substring(cutIndex).trim(),
         },
-        { emitEvent: false }
+        { emitEvent: false },
       );
     }
   }

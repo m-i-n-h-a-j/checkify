@@ -1,12 +1,12 @@
 export type Cheque = {
   id: number;
-  presetName:string;
+  presetName: string;
   width: string;
   height: string;
 
   dateTop: string;
   dateLeft: string;
-  dateSpace:string;
+  dateSpace: string;
 
   nameTop: string;
   nameLeft: string;
