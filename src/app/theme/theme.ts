@@ -1,7 +1,7 @@
 import Lara from '@primeuix/themes/lara';
 import { definePreset } from '@primeuix/themes';
 
-export const RagamTheme = definePreset(Lara, {
+export const CheckifyTheme = definePreset(Lara, {
   semantic: {
     colorScheme: {
       light: {

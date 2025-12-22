@@ -2,24 +2,22 @@ import {
   ApplicationConfig,
   provideBrowserGlobalErrorListeners,
   provideZoneChangeDetection,
+  isDevMode,
 } from '@angular/core';
 import { provideRouter, withViewTransitions } from '@angular/router';
-
 import { routes } from './app.routes';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
-import Lara from '@primeuix/themes/lara';
-import { RagamTheme } from './theme/theme';
+import { CheckifyTheme } from './theme/theme';
+import { provideServiceWorker } from '@angular/service-worker';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withViewTransitions()),
-    provideAnimationsAsync(),
     providePrimeNG({
       theme: {
-        preset: RagamTheme,
+        preset: CheckifyTheme,
         options: {
           darkModeSelector: '.my-app-dark',
           cssLayer: {
@@ -28,6 +26,10 @@ export const appConfig: ApplicationConfig = {
           },
         },
       },
+    }),
+    provideServiceWorker('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
 };
