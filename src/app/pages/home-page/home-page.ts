@@ -17,13 +17,12 @@ import {
 } from '@angular/forms';
 import { DateInputComponent } from '../../components/date-input-component/date-input-component';
 import { CoreServices } from '../../services/core-services';
-import { CommonModule } from '@angular/common';
 import { PrintComponent } from '../../components/print-component/print-component';
 import { Cheque } from '../../models/check';
 
 @Component({
   selector: 'app-home-page',
-  imports: [FormsModule, ReactiveFormsModule, DateInputComponent, CommonModule, PrintComponent],
+  imports: [FormsModule, ReactiveFormsModule, DateInputComponent, PrintComponent],
   templateUrl: './home-page.html',
   styleUrl: './home-page.css',
 })
@@ -107,7 +106,7 @@ export class HomePage implements OnInit {
             amountInWordsPrimary: '',
             amountInWordsSecondary: '',
           },
-          { emitEvent: false },
+          { emitEvent: false }
         );
       }
     });
@@ -133,7 +132,7 @@ export class HomePage implements OnInit {
           amountInWordsPrimary: fullText,
           amountInWordsSecondary: '',
         },
-        { emitEvent: false },
+        { emitEvent: false }
       );
     } else {
       let cutIndex = fullText.length;
@@ -151,7 +150,7 @@ export class HomePage implements OnInit {
           amountInWordsPrimary: fullText.substring(0, cutIndex),
           amountInWordsSecondary: fullText.substring(cutIndex).trim(),
         },
-        { emitEvent: false },
+        { emitEvent: false }
       );
     }
   }
