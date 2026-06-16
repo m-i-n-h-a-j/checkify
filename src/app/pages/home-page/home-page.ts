@@ -99,7 +99,7 @@ export class HomePage implements OnInit {
       const amount = Number(value);
       if (!isNaN(amount)) {
         const fullWords = this.coreService.numberToWords(amount) + ' Rupees Only';
-        this.splitAmountInWords(fullWords);
+        this.splitAmountInWords(fullWords.toUpperCase());
       } else {
         this.chequeForm.patchValue(
           {
