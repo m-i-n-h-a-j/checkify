@@ -8,6 +8,30 @@ export class CoreServices {
   chequePresets = signal<Array<Cheque>>([]);
   selectedPreset = signal<number | null>(null);
 
+  getAmountInWords(amount: number): string {
+    if (isNaN(amount) || amount === 0) return 'Zero Rupees Only';
+
+    const rupees = Math.floor(amount);
+    const paisa = Math.round((amount - rupees) * 100);
+
+    let words = '';
+
+    if (rupees > 0) {
+      words += this.numberToWords(rupees) + ' Rupees';
+    }
+
+    if (paisa > 0) {
+      if (words !== '') {
+        words += ' and ';
+      }
+      words += this.numberToWords(paisa) + ' Paisa';
+    }
+
+    words += ' Only';
+
+    return words;
+  }
+
   numberToWords(num: number): string {
     const a = [
       '',

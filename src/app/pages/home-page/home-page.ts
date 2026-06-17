@@ -98,7 +98,7 @@ export class HomePage implements OnInit {
     this.chequeForm.get('amount')?.valueChanges.subscribe((value) => {
       const amount = Number(value);
       if (!isNaN(amount)) {
-        const fullWords = this.coreService.numberToWords(amount) + ' Rupees Only';
+        const fullWords = this.coreService.getAmountInWords(amount);
         this.splitAmountInWords(fullWords.toUpperCase());
       } else {
         this.chequeForm.patchValue(
@@ -119,6 +119,15 @@ export class HomePage implements OnInit {
     setTimeout(() => {
       document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     }, 50);
+  }
+
+  getFormattedAmount(): string {
+    const amount = this.chequeForm.value.amount;
+    if (!amount) return '';
+    if (!amount.includes('.')) {
+      return `${amount}.00`;
+    }
+    return amount;
   }
 
   private splitAmountInWords(fullText: string) {

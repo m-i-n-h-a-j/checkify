@@ -11,8 +11,8 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       <!-- Dimensions -->
       <div class="bg-slate-50 dark:bg-slate-800/50 p-5 rounded-xl border border-slate-100 dark:border-slate-700/50 hover:border-indigo-200 dark:hover:border-indigo-800 transition-colors">
-        <h4 class="text-xs font-bold text-slate-500 dark:text-slate-400 mb-5 uppercase tracking-widest flex items-center gap-2"><i class="pi pi-expand text-indigo-400"></i> Dimensions</h4>
-        <div class="flex flex-col gap-6">
+        <h4 class="text-xs font-bold text-slate-500 dark:text-slate-400 mb-8 uppercase tracking-widest flex items-center gap-2"><i class="pi pi-expand text-indigo-400"></i> Dimensions</h4>
+        <div class="flex flex-col gap-8 pt-3">
           <p-floatlabel>
             <input pInputText pSize="small" id="height" [(ngModel)]="this.height" autocomplete="off" class="w-full" />
             <label for="height">Cheque Height (cm)</label>
@@ -26,8 +26,8 @@
 
       <!-- Date Configuration -->
       <div class="bg-slate-50 dark:bg-slate-800/50 p-5 rounded-xl border border-slate-100 dark:border-slate-700/50 hover:border-indigo-200 dark:hover:border-indigo-800 transition-colors">
-        <h4 class="text-xs font-bold text-slate-500 dark:text-slate-400 mb-5 uppercase tracking-widest flex items-center gap-2"><i class="pi pi-calendar text-indigo-400"></i> Date</h4>
-        <div class="flex flex-col gap-6">
+        <h4 class="text-xs font-bold text-slate-500 dark:text-slate-400 mb-8 uppercase tracking-widest flex items-center gap-2"><i class="pi pi-calendar text-indigo-400"></i> Date</h4>
+        <div class="flex flex-col gap-8 pt-3">
           <p-floatlabel>
             <input pInputText pSize="small" id="dateTop" [(ngModel)]="this.dateTop" autocomplete="off" class="w-full" />
             <label for="dateTop">Date Top Margin</label>
@@ -45,8 +45,8 @@
 
       <!-- Payee Name -->
       <div class="bg-slate-50 dark:bg-slate-800/50 p-5 rounded-xl border border-slate-100 dark:border-slate-700/50 hover:border-indigo-200 dark:hover:border-indigo-800 transition-colors">
-        <h4 class="text-xs font-bold text-slate-500 dark:text-slate-400 mb-5 uppercase tracking-widest flex items-center gap-2"><i class="pi pi-user text-indigo-400"></i> Payee Name</h4>
-        <div class="flex flex-col gap-6">
+        <h4 class="text-xs font-bold text-slate-500 dark:text-slate-400 mb-8 uppercase tracking-widest flex items-center gap-2"><i class="pi pi-user text-indigo-400"></i> Payee Name</h4>
+        <div class="flex flex-col gap-8 pt-3">
           <p-floatlabel>
             <input pInputText pSize="small" id="nameTop" [(ngModel)]="this.nameTop" autocomplete="off" class="w-full" />
             <label for="nameTop">Name Top Margin</label>
@@ -60,8 +60,8 @@
 
       <!-- Amount in Words L1 -->
       <div class="bg-slate-50 dark:bg-slate-800/50 p-5 rounded-xl border border-slate-100 dark:border-slate-700/50 hover:border-indigo-200 dark:hover:border-indigo-800 transition-colors">
-        <h4 class="text-xs font-bold text-slate-500 dark:text-slate-400 mb-5 uppercase tracking-widest flex items-center gap-2"><i class="pi pi-align-left text-indigo-400"></i> Words (Line 1)</h4>
-        <div class="flex flex-col gap-6">
+        <h4 class="text-xs font-bold text-slate-500 dark:text-slate-400 mb-8 uppercase tracking-widest flex items-center gap-2"><i class="pi pi-align-left text-indigo-400"></i> Words (Line 1)</h4>
+        <div class="flex flex-col gap-8 pt-3">
           <p-floatlabel>
             <input pInputText pSize="small" id="amntLine1Top" [(ngModel)]="this.amntLine1Top" autocomplete="off" class="w-full" />
             <label for="amntLine1Top">Line 1 Top Margin</label>
@@ -75,8 +75,8 @@
 
       <!-- Amount in Words L2 -->
       <div class="bg-slate-50 dark:bg-slate-800/50 p-5 rounded-xl border border-slate-100 dark:border-slate-700/50 hover:border-indigo-200 dark:hover:border-indigo-800 transition-colors">
-        <h4 class="text-xs font-bold text-slate-500 dark:text-slate-400 mb-5 uppercase tracking-widest flex items-center gap-2"><i class="pi pi-align-center text-indigo-400"></i> Words (Line 2)</h4>
-        <div class="flex flex-col gap-6">
+        <h4 class="text-xs font-bold text-slate-500 dark:text-slate-400 mb-8 uppercase tracking-widest flex items-center gap-2"><i class="pi pi-align-center text-indigo-400"></i> Words (Line 2)</h4>
+        <div class="flex flex-col gap-8 pt-3">
           <p-floatlabel>
             <input pInputText pSize="small" id="amntLine2Top" [(ngModel)]="this.amntLine2Top" autocomplete="off" class="w-full" />
             <label for="amntLine2Top">Line 2 Top Margin</label>
@@ -90,8 +90,8 @@
 
       <!-- Numeric Amount -->
       <div class="bg-slate-50 dark:bg-slate-800/50 p-5 rounded-xl border border-slate-100 dark:border-slate-700/50 hover:border-indigo-200 dark:hover:border-indigo-800 transition-colors">
-        <h4 class="text-xs font-bold text-slate-500 dark:text-slate-400 mb-5 uppercase tracking-widest flex items-center gap-2"><i class="pi pi-money-bill text-indigo-400"></i> Numeric Amount</h4>
-        <div class="flex flex-col gap-6">
+        <h4 class="text-xs font-bold text-slate-500 dark:text-slate-400 mb-8 uppercase tracking-widest flex items-center gap-2"><i class="pi pi-money-bill text-indigo-400"></i> Numeric Amount</h4>
+        <div class="flex flex-col gap-8 pt-3">
           <p-floatlabel>
             <input pInputText pSize="small" id="amountTop" [(ngModel)]="this.amountTop" autocomplete="off" class="w-full" />
             <label for="amountTop">Amount Top Margin</label>
@@ -146,7 +146,7 @@
         class="absolute font-bold text-sm"
         [style.top.cm]="amountTop"
         [style.left.cm]="amountLeft"
-        >{{ this.amount() + '.00' }}</span
+        >{{ this.amount() }}</span
       >
     </div>
     </div>
